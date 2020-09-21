@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     float jumpSpeed = 1;
+
+    [SerializeField]
+    float PlayerHp = 10;
+
+    [SerializeField]
+    int goToLevel = 0;
 
     public bool isGrounded;
 
@@ -48,6 +55,20 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
 
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            PlayerHp--;
+            Debug.Log(PlayerHp);
+        }
+
+        if (PlayerHp == 0)
+        {
+            SceneManager.LoadScene(goToLevel);
+        }
     }
 
 
