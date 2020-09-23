@@ -8,7 +8,7 @@ public class BasicEnemy2 : MonoBehaviour
     Transform target;
 
     [SerializeField]
-    float speed;
+    float speed = 0;
 
     // Start is called before the first frame update
     void Start()

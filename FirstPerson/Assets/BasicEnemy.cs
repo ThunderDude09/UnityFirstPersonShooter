@@ -10,10 +10,10 @@ public class BasicEnemy : MonoBehaviour
     Transform currentTarget;
 
     [SerializeField]
-    float speed;
+    float speed = 0;
 
     [SerializeField]
-    float dist;
+    float dist = 0;
 
     // Start is called before the first frame update
     void Start()

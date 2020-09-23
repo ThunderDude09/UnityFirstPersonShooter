@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     float jumpSpeed = 1;
 
     [SerializeField]
+    Transform cam;
+
+    [SerializeField]
     float PlayerHp = 10;
 
     [SerializeField]
@@ -36,15 +39,32 @@ public class PlayerMovement : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         bool player_jump = Input.GetButtonDown("Jump");
 
-        rb.velocity = new Vector3(h * moveSpeed,
-                                  rb.velocity.y,
-                                  v * moveSpeed);
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moveDirection = (camForward * v * moveSpeed) + (camRight * h * moveSpeed);
+
+        rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
 
         if (player_jump && isGrounded)
         {
             rb.velocity = new Vector3(rb.velocity.x,
                                   jumpSpeed,
                                   rb.velocity.z);
+        }
+
+        if(Input.GetKeyDown("g"))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        if (Input.GetKeyDown("h"))
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

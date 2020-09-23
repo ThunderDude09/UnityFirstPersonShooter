@@ -20,13 +20,20 @@ public class TestMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("g"))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        if (Input.GetKeyDown("h"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void PressStart()
