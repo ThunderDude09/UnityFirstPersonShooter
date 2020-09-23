@@ -202,7 +202,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 146682684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 493778603}
+        m_MethodName: PressStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &146682684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +523,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f815a0b058d641545be289b1c1ef1bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goToLevel: 1
+  goToLevel2: 0
+  goToLevel3: 0
+  buttonText: {fileID: 401653823}
+  myButton: {fileID: 146682683}
 --- !u!1 &909512537
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +618,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1181179263
 GameObject:
@@ -884,7 +900,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0609, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1811134052
 GameObject:
