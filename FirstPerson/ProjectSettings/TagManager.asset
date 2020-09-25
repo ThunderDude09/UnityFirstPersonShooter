@@ -7,6 +7,9 @@ TagManager:
   - ground
   - New tag
   - Spike
+  - Bullet
+  - Enemy
+  - AmmoBox
   layers:
   - Default
   - TransparentFX

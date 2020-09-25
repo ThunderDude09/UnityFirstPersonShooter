@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     float rotSpeed = 0;
 
     [SerializeField]
@@ -26,5 +26,5 @@ public class CameraControl : MonoBehaviour
 
         transform.Rotate(new Vector3(0, x * rotSpeed, 0));
         lookUpDown.Rotate(new Vector3(y * rotSpeed2, 0, 0));
-    }
+    }*/
 }

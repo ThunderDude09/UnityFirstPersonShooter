@@ -39,5 +39,6 @@ public class BasicEnemy : MonoBehaviour
     void UpdateTarget()
     {
         currentTarget = targets[targetIndex];
-    }
+    }   
+
 }

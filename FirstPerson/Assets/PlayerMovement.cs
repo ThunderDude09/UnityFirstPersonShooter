@@ -2,11 +2,26 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using JetBrains.Annotations;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    float rotSpeed = 0;
+
+    [SerializeField]
+    float rotSpeed2 = 0;
+
+    [SerializeField]
+    Transform CameraPivot;
+
+    [SerializeField]
+    Transform lookUpDown;
+
+
+
     [SerializeField]
     float moveSpeed = 1;
 
@@ -17,10 +32,11 @@ public class PlayerMovement : MonoBehaviour
     Transform cam;
 
     [SerializeField]
-    float PlayerHp = 10;
+    int goToLevel = 0;
 
     [SerializeField]
-    int goToLevel = 0;
+    Image bar;
+    int PlayerHp = 60;
 
     public bool isGrounded;
 
@@ -30,11 +46,18 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        UpdateHUD();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        float x = Input.GetAxis("Mouse X");
+        float y = Input.GetAxis("Mouse Y");
+
+        CameraPivot.Rotate(new Vector3(0, x * rotSpeed, 0));
+        lookUpDown.Rotate(new Vector3(y * rotSpeed2, 0, 0));
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         bool player_jump = Input.GetButtonDown("Jump");
@@ -66,7 +89,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+        
     }
+
+    
 
     void OnCollisionEnter(Collision collision)
     {
@@ -74,15 +101,20 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-
+        if (collision.gameObject.CompareTag("AmmoBox"))
+        {
+            Destroy(collision.gameObject);
+            PlayerShoot.instance.UpdateAmmo();
+        }
     }
 
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Spike"))
         {
-            PlayerHp--;
+            PlayerHp -= 1;
             Debug.Log(PlayerHp);
+            UpdateHUD();
         }
 
         if (PlayerHp == 0)
@@ -98,6 +130,11 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+
     }
 
+    void UpdateHUD()
+    {
+        bar.fillAmount = (float)PlayerHp / 60;
+    }
 }
