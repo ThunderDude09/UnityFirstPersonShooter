@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 public class Bullet : MonoBehaviour
 {
@@ -9,12 +12,14 @@ public class Bullet : MonoBehaviour
     float bulletLifetime;
 
     [SerializeField]
-    int enemysLeft = 3;
-
-    [SerializeField]
     int goToLevel = 0;
 
+    [SerializeField]
+    Image bar;
+    int count = 3;
+
     float elapsed = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,18 +42,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            enemysLeft = enemysLeft - 1;
-            Debug.Log(enemysLeft);
             Destroy(collision.gameObject);
             Destroy(gameObject);
+            PlayerShoot.instance.UpdateEnemy();
         }
-        if (enemysLeft == 0)
-        {
-            SceneManager.LoadScene(goToLevel);
-        }
-
+        
     }
 
 
-    
 }

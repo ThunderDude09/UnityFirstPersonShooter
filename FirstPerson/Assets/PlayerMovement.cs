@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     int goToLevel = 0;
 
     [SerializeField]
+    int goToLevel2 = 0;
+
+    [SerializeField]
     Image bar;
     int PlayerHp = 60;
 
@@ -132,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    
 
     void UpdateHUD()
     {

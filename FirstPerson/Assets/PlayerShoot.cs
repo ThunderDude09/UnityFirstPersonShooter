@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -16,8 +17,14 @@ public class PlayerShoot : MonoBehaviour
     float bulletSpeed;
 
     [SerializeField]
+    int goToLevel = 0;
+
+    [SerializeField]
     Image bar;
     public int ammo = 30;
+
+    [SerializeField]
+    int count = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +66,19 @@ public class PlayerShoot : MonoBehaviour
         UpdateHUD();
     }
 
+    public void UpdateEnemy()
+    {
+        count = count - 1;
+        Debug.Log(count);
+        if (count == 0)
+        {
+            SceneManager.LoadScene(goToLevel);
+        }
+    }
+
     void UpdateHUD()
     {
         bar.fillAmount = (float)ammo / 30;
     }
+
 }
